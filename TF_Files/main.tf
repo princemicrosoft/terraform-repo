@@ -71,7 +71,7 @@ resource "azurerm_role_assignment" "role_assignment2" {
   principal_id         = module.avm-res-managedidentity-userassignedidentity[0].principal_id
   role_definition_name = "Contributor"
   scope                = module.avm-res-resources-resourcegroup.resource_id
-  depends_on           = [module.avm-res-managedidentity-userassignedidentity]
+  depends_on           = [module.avm-res-managedidentity-userassignedidentity[0]]
 }
 
 # Module for creating a Storage Account

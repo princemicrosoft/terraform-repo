@@ -85,7 +85,7 @@ module "avm-res-storage-storageaccount" {
   count               = var.enable_storage_account ? 1 : 0
   role_assignments = {
     "roleassignment1" = {
-      principal_id               = data.azuread_group.group.object_id
+      principal_id               = local.group_object_id
       role_definition_id_or_name = "Storage Blob Data Reader"
     }
   }

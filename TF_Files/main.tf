@@ -10,10 +10,12 @@ module "naming" {
 #   security_enabled = true
 #   mail_enabled     = false
 # }
-data "azuread_group" "group" {
-  display_name = "DEV_TEAM"
+# data "azuread_group" "group" {
+#   display_name = "DEV_TEAM"
+# }
+locals {
+  group_object_id = "8e70d712-d73d-491f-b168-1a8d552aaedc"
 }
-
 
 # Module for creating a resource group
 module "avm-res-resources-resourcegroup" {
@@ -24,7 +26,7 @@ module "avm-res-resources-resourcegroup" {
   tags     = var.tags
   role_assignments = {
     "roleassignment1" = {
-      principal_id               = data.azuread_group.group.object_id
+      principal_id               = local.group_object_id
       role_definition_id_or_name = "Reader"
     }
   }

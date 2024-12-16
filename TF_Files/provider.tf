@@ -8,3 +8,7 @@ provider "azuread" {
   use_oidc = true
 
 }
+
+provider "azapi" {
+  use_oidc = true
+}

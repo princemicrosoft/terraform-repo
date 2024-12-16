@@ -19,7 +19,8 @@ on:
           - subscription2
 permissions:
   id-token: write
-  contents: read
+  contents: write
+  issues: write
 
 env:
   ARM_CLIENT_ID: ${{ secrets.ARM_CLIENT_ID }}

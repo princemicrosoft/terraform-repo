@@ -12,3 +12,12 @@ provider "azuread" {
 provider "azapi" {
   use_oidc = true
 }
+
+terraform {
+  required_providers {
+    azapi = {
+      source  = "azure/azapi"
+      version = "=0.1.0"
+    }
+  }
+}

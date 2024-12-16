@@ -35,11 +35,11 @@ jobs:
       run:
         working-directory: terraform/subscriptions/${{ github.event.inputs.subscription || 'subscription1' }}/TF_Files
     steps:
-      - name: Manual Workflow Approval
-        uses: trstringer/manual-approval@v1.9.0
-        with:
-         approvers: princemicrosoft
-         secret: ${{ secrets.GITHUB_TOKEN }}
+      # - name: Manual Workflow Approval
+      #   uses: trstringer/manual-approval@v1.9.0
+      #   with:
+      #    approvers: princemicrosoft
+      #    secret: ${{ secrets.GITHUB_TOKEN }}
          
       - name: Checkout code
         uses: actions/checkout@v4.2.2

@@ -1,3 +1,12 @@
+terraform {
+  required_providers {
+    azapi = {
+      source = "Azure/azapi"
+      version = "1.15.0"
+    }
+  }
+}
+
 provider "azurerm" {
   features {}
   storage_use_azuread = true
@@ -11,13 +20,4 @@ provider "azuread" {
 
 provider "azapi" {
   use_oidc = true
-}
-
-terraform {
-  required_providers {
-    azapi = {
-      source = "Azure/azapi"
-      version = "2.1.0"
-    }
-  }
 }

@@ -34,6 +34,9 @@ jobs:
       run:
         working-directory: terraform/subscriptions/${{ github.event.inputs.subscription || 'subscription1' }}/TF_Files
     steps:
+      - name: Checkout code
+        uses: actions/checkout@v4.2.2
+        
       - name: 'Az CLI login'
         uses: azure/login@v2
         with:
@@ -47,9 +50,6 @@ jobs:
           azcliversion: latest
           inlineScript: |
             az account show
-
-    #   - name: Checkout code
-    #     uses: actions/checkout@v4.2.2
 
       - name: Set up Terraform
         uses: hashicorp/setup-terraform@v2.0.3
@@ -70,6 +70,9 @@ jobs:
       run:
         working-directory: terraform/subscriptions/${{ github.event.inputs.subscription || 'subscription1' }}/TF_Files
     steps:
+      - name: Checkout code
+        uses: actions/checkout@v4.2.2
+
       - name: 'Az CLI login'
         uses: azure/login@v2
         with:
@@ -83,9 +86,6 @@ jobs:
           azcliversion: latest
           inlineScript: |
             az account show
-
-    #   - name: Checkout code
-    #     uses: actions/checkout@v4.2.2
 
       - name: Set up Terraform
         uses: hashicorp/setup-terraform@v2.0.3

@@ -48,8 +48,8 @@ jobs:
           inlineScript: |
             az account show
 
-      - name: Checkout code
-        uses: actions/checkout@v4.2.2
+    #   - name: Checkout code
+    #     uses: actions/checkout@v4.2.2
 
       - name: Set up Terraform
         uses: hashicorp/setup-terraform@v2.0.3
@@ -84,8 +84,8 @@ jobs:
           inlineScript: |
             az account show
 
-      - name: Checkout code
-        uses: actions/checkout@v4.2.2
+    #   - name: Checkout code
+    #     uses: actions/checkout@v4.2.2
 
       - name: Set up Terraform
         uses: hashicorp/setup-terraform@v2.0.3

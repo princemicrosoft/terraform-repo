@@ -36,9 +36,9 @@ jobs:
       - name: 'Az CLI login'
         uses: azure/login@v2
         with:
-          client-id: ${{ secrets['ARM_CLIENT_ID_' + github.event.inputs.subscription] }}
-          tenant-id: ${{ secrets['ARM_TENANT_ID_' + github.event.inputs.subscription] }}
-          subscription-id: ${{ secrets['ARM_SUBSCRIPTION_ID_' + github.event.inputs.subscription] }}
+          client-id: ${{ secrets[format('ARM_CLIENT_ID_{0}', github.event.inputs.subscription)] }}
+          tenant-id: ${{ secrets[format('ARM_TENANT_ID_{0}', github.event.inputs.subscription)] }}
+          subscription-id: ${{ secrets[format('ARM_SUBSCRIPTION_ID_{0}', github.event.inputs.subscription)] }}
 
       - name: Azure CLI script
         uses: azure/cli@v2
@@ -73,9 +73,9 @@ jobs:
       - name: 'Az CLI login'
         uses: azure/login@v2
         with:
-          client-id: ${{ secrets['ARM_CLIENT_ID_' + github.event.inputs.subscription] }}
-          tenant-id: ${{ secrets['ARM_TENANT_ID_' + github.event.inputs.subscription] }}
-          subscription-id: ${{ secrets['ARM_SUBSCRIPTION_ID_' + github.event.inputs.subscription] }}
+          client-id: ${{ secrets[format('ARM_CLIENT_ID_{0}', github.event.inputs.subscription)] }}
+          tenant-id: ${{ secrets[format('ARM_TENANT_ID_{0}', github.event.inputs.subscription)] }}
+          subscription-id: ${{ secrets[format('ARM_SUBSCRIPTION_ID_{0}', github.event.inputs.subscription)] }}
 
       - name: Azure CLI script
         uses: azure/cli@v2

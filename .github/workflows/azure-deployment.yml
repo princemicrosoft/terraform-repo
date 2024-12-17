@@ -22,11 +22,6 @@ permissions:
   contents: write
   issues: write
 
-env:
-  ARM_CLIENT_ID: ${{ secrets.ARM_CLIENT_ID }}
-  ARM_SUBSCRIPTION_ID: ${{ secrets.ARM_SUBSCRIPTION_ID }}
-  ARM_TENANT_ID: ${{ secrets.ARM_TENANT_ID }}
-
 jobs:
   terraform_plan:
     name: 'Terraform Validate and Plan'
@@ -34,22 +29,16 @@ jobs:
     defaults:
       run:
         working-directory: terraform/subscriptions/${{ github.event.inputs.subscription || 'subscription1' }}/TF_Files
-    steps:
-      # - name: Manual Workflow Approval
-      #   uses: trstringer/manual-approval@v1.9.0
-      #   with:
-      #    approvers: princemicrosoft
-      #    secret: ${{ secrets.GITHUB_TOKEN }}
-         
+    steps: 
       - name: Checkout code
         uses: actions/checkout@v4.2.2
         
       - name: 'Az CLI login'
         uses: azure/login@v2
         with:
-          client-id: ${{ secrets.ARM_CLIENT_ID }}
-          tenant-id: ${{ secrets.ARM_TENANT_ID }}
-          subscription-id: ${{ secrets.ARM_SUBSCRIPTION_ID }}
+          client-id: ${{ secrets['ARM_CLIENT_ID_' + github.event.inputs.subscription] }}
+          tenant-id: ${{ secrets['ARM_TENANT_ID_' + github.event.inputs.subscription] }}
+          subscription-id: ${{ secrets['ARM_SUBSCRIPTION_ID_' + github.event.inputs.subscription] }}
 
       - name: Azure CLI script
         uses: azure/cli@v2
@@ -84,9 +73,9 @@ jobs:
       - name: 'Az CLI login'
         uses: azure/login@v2
         with:
-          client-id: ${{ secrets.ARM_CLIENT_ID }}
-          tenant-id: ${{ secrets.ARM_TENANT_ID }}
-          subscription-id: ${{ secrets.ARM_SUBSCRIPTION_ID }}
+          client-id: ${{ secrets['ARM_CLIENT_ID_' + github.event.inputs.subscription] }}
+          tenant-id: ${{ secrets['ARM_TENANT_ID_' + github.event.inputs.subscription] }}
+          subscription-id: ${{ secrets['ARM_SUBSCRIPTION_ID_' + github.event.inputs.subscription] }}
 
       - name: Azure CLI script
         uses: azure/cli@v2

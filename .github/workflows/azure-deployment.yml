@@ -1,12 +1,6 @@
 name: 'Landing-zone-PID-PIA Azure Infra Provisioning'
 
 on:
-  push:
-    branches:
-      - main
-  pull_request:
-    branches:
-      - main
   workflow_dispatch:
     inputs:
       subscription:
@@ -26,6 +20,11 @@ jobs:
   terraform_plan:
     name: 'Terraform Validate and Plan'
     runs-on: ubuntu-latest
+    env:
+      ARM_CLIENT_ID: ${{ secrets[format('ARM_CLIENT_ID_{0}', github.event.inputs.subscription)] }}
+      ARM_TENANT_ID: ${{ secrets.ARM_TENANT_ID }}
+      ARM_SUBSCRIPTION_ID: ${{ secrets[format('ARM_SUBSCRIPTION_ID_{0}', github.event.inputs.subscription)] }}
+
     defaults:
       run:
         working-directory: terraform/subscriptions/${{ github.event.inputs.subscription || 'subscription1' }}/TF_Files
@@ -60,6 +59,11 @@ jobs:
     name: 'Terraform Apply'
     runs-on: ubuntu-latest
     needs: terraform_plan
+    env:
+      ARM_CLIENT_ID: ${{ secrets[format('ARM_CLIENT_ID_{0}', github.event.inputs.subscription)] }}
+      ARM_TENANT_ID: ${{ secrets.ARM_TENANT_ID }}
+      ARM_SUBSCRIPTION_ID: ${{ secrets[format('ARM_SUBSCRIPTION_ID_{0}', github.event.inputs.subscription)] }}
+
     environment: 
         name: approval
     defaults:

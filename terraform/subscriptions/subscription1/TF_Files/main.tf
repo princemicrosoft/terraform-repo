@@ -150,4 +150,6 @@ resource "azurerm_consumption_budget_resource_group" "segittur_rg_budget" {
     contact_emails = var.receipient_mail
     contact_roles  = ["Owner"]
   }
+  count = var.enable_resource_group && var.enable_budget ? 1 : 0
+
 }

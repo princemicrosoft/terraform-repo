@@ -7,6 +7,7 @@ enable_storage_account  = true
 enable_recovery_vault   = true
 enable_backup_container = true
 enable_management_lock  = false
+enable_budget = true
 
 # Subscription ID
 subscription_id = "336349dc-0fa5-48a3-ba28-c0d327bab5bc"

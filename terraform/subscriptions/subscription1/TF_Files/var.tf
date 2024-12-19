@@ -54,6 +54,11 @@ variable "enable_management_lock" {
   default     = true
 }
 
+variable "enable_budget" {
+  description = "Flag to enable or disable the budget creation."
+  type        = bool  
+}
+
 # Subscription ID
 variable "subscription_id" {
   description = "Subscription ID."

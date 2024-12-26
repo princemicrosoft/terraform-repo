@@ -18,3 +18,10 @@ jobs:
       - name: Use Subscription Name
         run: |
           echo "The extracted subscription name is: ${{ steps.extract-subscription.outputs.subscription }}"
+  terraform_init_and_plan:
+    name: "Terraform Init and Plan"
+    runs-on: ubuntu-latest
+    steps:
+    - name: Use Subscription Name
+      run: |
+        echo "The extracted subscription name is: ${{ steps.extract-subscription.outputs.subscription }} that is running in job2"

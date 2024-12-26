@@ -20,6 +20,7 @@ jobs:
           echo "The extracted subscription name is: ${{ steps.extract-subscription.outputs.subscription }}"
   terraform_init_and_plan:
     name: "Terraform Init and Plan"
+    needs: check-subscription
     runs-on: ubuntu-latest
     steps:
     - name: Use Subscription Name

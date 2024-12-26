@@ -1,0 +1,12 @@
+name: Pull Request Workflow
+on:
+  pull_request:
+    types: [opened, edited]
+
+jobs:
+  check-description:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Get Pull Request Description
+        run: |
+            echo "The pull request description is: ${{ github.event.pull_request.body }}"

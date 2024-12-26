@@ -33,12 +33,8 @@ jobs:
         with:
           script: |
             github.rest.issues.createComment({
-              issue_number: (await github.rest.repos.listPullRequestsAssociatedWithCommit({
-                commit_sha: context.sha,
-                owner: context.repo.owner,
-                repo: context.repo.repo,
-              })).data[0].number,
-              owner: context.repo.owner,
-              repo: context.repo.repo,
-              body: 'Thanks for reporting!'
-            })
+                  owner: context.repo.owner,
+                  repo: context.repo.repo,
+                  issue_number: context.issue.number,
+                  body: `## Terraform Plan Output\n\n`
+                });

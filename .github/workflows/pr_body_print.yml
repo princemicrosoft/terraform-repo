@@ -6,6 +6,8 @@ on:
 jobs:
   check-subscription:
     runs-on: ubuntu-latest
+    outputs:
+      subscription: ${{ steps.extract-subscription.outputs.subscription }}
     steps:
       - name: Extract Subscription Name
         id: extract-subscription
@@ -18,11 +20,12 @@ jobs:
       - name: Use Subscription Name
         run: |
           echo "The extracted subscription name is: ${{ steps.extract-subscription.outputs.subscription }}"
+
   terraform_init_and_plan:
     name: "Terraform Init and Plan"
     needs: check-subscription
     runs-on: ubuntu-latest
     steps:
-    - name: Use Subscription Name
-      run: |
-        echo "The extracted subscription name is: ${{ steps.extract-subscription.outputs.subscription }} that is running in job2"
+      - name: Use Subscription Name
+        run: |
+          echo "The extracted subscription name is: ${{ needs.check-subscription.outputs.subscription }} that is running in job2"

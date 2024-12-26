@@ -11,7 +11,7 @@ jobs:
         id: extract-subscription
         run: |
           echo "Pull request body: ${{ github.event.pull_request.body }}"
-          subscription=$(echo "${{ github.event.pull_request.body }}" | grep -oP '(?<=**Subscription:** ).*')
+          subscription=$(echo "${{ github.event.pull_request.body }}" | grep -oP '(?<=Subscription:).*')
           echo "Subscription name: $subscription"
           echo "::set-output name=subscription::$subscription"
 

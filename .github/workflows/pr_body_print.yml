@@ -25,6 +25,7 @@ jobs:
     name: "Terraform Init and Plan"
     needs: check-subscription
     runs-on: ubuntu-latest
+    permissions: write-all
     steps:
       - name: Use Subscription Name
         run: |

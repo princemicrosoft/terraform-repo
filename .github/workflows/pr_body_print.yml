@@ -29,3 +29,16 @@ jobs:
       - name: Use Subscription Name
         run: |
           echo "The extracted subscription name is: ${{ needs.check-subscription.outputs.subscription }} that is running in job2"
+      - uses: actions/github-script@v6
+        with:
+          script: |
+            github.rest.issues.createComment({
+              issue_number: (await github.rest.repos.listPullRequestsAssociatedWithCommit({
+                commit_sha: context.sha,
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+              })).data[0].number,
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              body: 'Thanks for reporting!'
+            })

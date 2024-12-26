@@ -4,9 +4,17 @@ on:
     types: [opened, edited]
 
 jobs:
-  check-description:
+  check-subscription:
     runs-on: ubuntu-latest
     steps:
-      - name: Get Pull Request Description
+      - name: Extract Subscription Name
+        id: extract-subscription
         run: |
-            echo "The pull request description is: ${{ github.event.pull_request.body }}"
+          echo "Pull request body: ${{ github.event.pull_request.body }}"
+          subscription=$(echo "${{ github.event.pull_request.body }}" | grep -oP '(?<=**Subscription:** ).*')
+          echo "Subscription name: $subscription"
+          echo "::set-output name=subscription::$subscription"
+
+      - name: Use Subscription Name
+        run: |
+          echo "The extracted subscription name is: ${{ steps.extract-subscription.outputs.subscription }}"
